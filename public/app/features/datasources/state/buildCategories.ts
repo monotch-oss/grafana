@@ -1,6 +1,7 @@
 import { DataSourcePluginMeta, PluginType } from '@grafana/data';
 import { config, featureEnabled } from '@grafana/runtime';
 import { DataSourcePluginCategory } from 'app/types';
+import assertConfig from '../../../../config.json';
 
 export function buildCategories(plugins: DataSourcePluginMeta[]): DataSourcePluginCategory[] {
   const categories: DataSourcePluginCategory[] = [
@@ -208,7 +209,7 @@ function getGrafanaCloudPhantomPlugin(): DataSourcePluginMeta {
     baseUrl: '',
     info: {
       description: 'Hosted Graphite, Prometheus, and Loki',
-      logos: { small: 'public/img/grafana_icon.svg', large: 'asd' },
+      logos: { small: assertConfig.logo, large: 'asd' },
       author: { name: 'Grafana Labs' },
       links: [
         {
