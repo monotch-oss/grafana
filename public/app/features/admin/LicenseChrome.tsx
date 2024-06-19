@@ -3,6 +3,7 @@ import React from 'react';
 
 import { GrafanaTheme } from '@grafana/data';
 import { stylesFactory, useTheme } from '@grafana/ui';
+import assertConfig from '../../../config.json';
 
 const title = { fontWeight: 500, fontSize: '26px', lineHeight: '123%' };
 
@@ -57,8 +58,8 @@ export function LicenseChrome({ header, editionNotice, subheader, children }: Pr
           }}
         >
           <img
-            src="public/img/grafana_icon.svg"
-            alt="Grafana"
+            src={assertConfig.icon}
+            alt={assertConfig.appTitle}
             width="80px"
             style={{ position: 'absolute', left: '23px', top: '20px' }}
           />

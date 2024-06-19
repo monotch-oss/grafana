@@ -1,5 +1,24 @@
 <!-- 9.2.1 START -->
 
+<!-- Monotch OSS START -->
+# Monotch OSS version 1.0.3 (2024-06-19)
+
+- **Configurable Asserts**: Configurable asserts with public/config.json
+
+# Monotch OSS version 1.0.2 (2023-11-07)
+
+### UI Changes
+
+- **Navi Bar**: Removed Left navi bar links (remaining logout)
+- **Login Page**: Removed forget password link
+- **Graph**: Disable showing contact menus on hover and disabled key bindings
+- **User View**: Removed the add, share and favorite buttons
+- **UI**: Removed cycle view mode
+- **Logout Button**: Removed hover dropdown and changed the icon
+- **Taskbar**: Changed taskbar background color to black for light theme
+
+<!-- Monotch OSS END-->
+
 # 9.2.1 (2022-10-18)
 
 ### Features and enhancements
@@ -3275,21 +3294,5 @@ Issue [#33352](https://github.com/grafana/grafana/issues/33352)
 - **AGPL License:** Update license from Apache 2.0 to the GNU Affero General Public License (AGPL). [#33184](https://github.com/grafana/grafana/pull/33184)
 
 <!-- 8.0.0-beta1 END -->
-
-<!-- Monotch OSS START -->
-
-# Monotch version 1.0.2 (2023-11-07)
-
-### UI Changes
-
-- **Navi Bar**: Removed Left navi bar links (remaining logout)
-- **Login Page**: Removed forget password link
-- **Graph**: Disable showing contact menus on hover and disabled key bindings
-- **User View**: Removed the add, share and favorite buttons
-- **UI**: Removed cycle view mode
-- **Logout Button**: Removed hover dropdown and changed the icon
-- **Taskbar**: Changed taskbar background color to black for light theme
-
-<!-- Monotch OSS END-->
 
 <!-- previous CHANGELOG entries can be found in /.changelog-archive >
