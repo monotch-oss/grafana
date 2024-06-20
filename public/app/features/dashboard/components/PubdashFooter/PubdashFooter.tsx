@@ -11,7 +11,7 @@ export const PubdashFooter = function () {
     <div className={styles.footer}>
       <span className={styles.logoText}>
         <a href="https://github.com/monotch-oss/grafana" target="_blank" rel="noreferrer noopener">
-          powered by Grafana. last modified 29-05-2024
+          Powered by Grafana. Last modified 20-06-2024
         </a>
       </span>
     </div>
