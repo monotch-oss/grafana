@@ -2,6 +2,7 @@ import { GrafanaTheme2, createTheme } from '@grafana/data';
 //@ts-ignore
 import { create } from '@storybook/theming';
 import '../src/components/Icon/iconBundle';
+import assertConfig from '../../../public/config.json';
 
 const createStorybookTheme = (theme: GrafanaTheme2) => {
   return create({
@@ -36,7 +37,7 @@ const createStorybookTheme = (theme: GrafanaTheme2) => {
 
     brandTitle: 'Grafana UI',
     brandUrl: './',
-    brandImage: `grafana_text_logo-${theme.colors.mode}.svg`,
+    brandImage: assertConfig.logo,
   });
 };
 

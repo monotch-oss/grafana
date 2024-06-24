@@ -5,6 +5,10 @@ import (
 	"net/http"
 	"sort"
 	"strings"
+	"encoding/json"
+	"io/ioutil"
+	"os"
+	"html/template"
 
 	"github.com/grafana/grafana/pkg/api/dtos"
 	"github.com/grafana/grafana/pkg/models"
@@ -78,6 +82,13 @@ func (hs *HTTPServer) setIndexViewData(c *models.ReqContext) (*dtos.IndexViewDat
 		settings["isPublicDashboardView"] = true
 	}
 
+	iconPath := "public/img/icon.png"
+	configMap, err := readConfigFile()
+	if err == nil {
+		icon, _ := configMap["icon"].(string)
+		iconPath = icon
+	}
+
 	data := dtos.IndexViewData{
 		User: &dtos.CurrentUser{
 			Id:                         c.UserID,
@@ -119,7 +130,7 @@ func (hs *HTTPServer) setIndexViewData(c *models.ReqContext) (*dtos.IndexViewDat
 		Sentry:                  &hs.Cfg.Sentry,
 		Nonce:                   c.RequestNonce,
 		ContentDeliveryURL:      hs.Cfg.GetContentDeliveryURL(hs.License.ContentDeliveryPrefix()),
-		LoadingLogo:             "public/img/grafana_icon.svg",
+		LoadingLogo:             template.URL(iconPath),
 	}
 
 	if !hs.AccessControl.IsDisabled() {
@@ -155,6 +166,23 @@ func (hs *HTTPServer) setIndexViewData(c *models.ReqContext) (*dtos.IndexViewDat
 	})
 
 	return &data, nil
+}
+
+func readConfigFile() (map[string]interface{}, error) {
+	file, err := os.Open("public/config.json")
+	if err != nil {
+		return nil, fmt.Errorf("could not open file: %v", err)
+	}
+	defer file.Close()
+	byteValue, err := ioutil.ReadAll(file)
+	if err != nil {
+		return nil, fmt.Errorf("could not read file: %v", err)
+	}
+	var result map[string]interface{}
+	if err := json.Unmarshal(byteValue, &result); err != nil {
+		return nil, fmt.Errorf("could not unmarshal JSON: %v", err)
+	}
+	return result, nil
 }
 
 func (hs *HTTPServer) Index(c *models.ReqContext) {
