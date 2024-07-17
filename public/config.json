@@ -1,7 +1,7 @@
 {
   "homeUrl": "https://service1.sandbox.com/",
   "appTitle": "Grafana",
-  "logo": "public/asserts/img/grafana_icon.svg",
-  "loginLogo": "public/asserts/img/grafana_icon.svg",
-  "icon": "public/asserts/img/grafana_icon.svg"
+  "logo": "public/assets/img/grafana_icon.svg",
+  "loginLogo": "public/assets/img/grafana_icon.svg",
+  "icon": "public/assets/img/grafana_icon.svg"
 }
