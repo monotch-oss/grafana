@@ -42,6 +42,33 @@ func notAuthorized(c *models.ReqContext) {
 	c.Redirect(setting.AppSubUrl + "/login")
 }
 
+func UserMismatchDetection() web.Handler {
+	return func(c *models.ReqContext) {
+		user := c.Req.URL.Query().Get("var-user")
+
+		cookieUserMismatch := "user-mismatch-redirect"
+
+		cookieUserMismatchState := c.GetCookie(cookieUserMismatch)
+
+		if user != "" && cookieUserMismatchState == "" && c.SignedInUser.Email != user {
+			c.Logger.Warn("Failed detect correct user, Redirecting to /login", user)
+
+			cookies.WriteCookie(c.Resp, cookieUserMismatch, "true", 5, nil)
+
+			if c.IsApiRequest() {
+				c.JsonApiErr(401, "Unauthorized", nil)
+				return
+			}
+
+			writeRedirectCookie(c)
+			c.Redirect(setting.AppSubUrl + "/login")
+		} else {
+			cookies.DeleteCookie(c.Resp, cookieUserMismatch, nil)
+		}
+
+	}
+}
+
 func tokenRevoked(c *models.ReqContext, err *models.TokenRevokedError) {
 	if c.IsApiRequest() {
 		c.JSON(401, map[string]interface{}{
